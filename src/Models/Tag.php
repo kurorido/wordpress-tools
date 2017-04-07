@@ -6,5 +6,6 @@ use Corcel\TermTaxonomy as Corcel;
 
 class Tag extends Corcel
 {
+    protected $connection = 'wordpress';
     protected $taxonomy = 'post_tag';
 }

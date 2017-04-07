@@ -6,5 +6,5 @@ use Corcel\User as Corcel;
 
 class Author extends Corcel
 {
-
+    protected $connection = 'wordpress';
 }

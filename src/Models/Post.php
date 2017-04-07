@@ -6,6 +6,8 @@ use Corcel\Post as Corcel;
 
 class Post extends Corcel
 {
+    protected $connection = 'wordpress';
+
     public function scopePost($query)
     {
         return $query->with('author')->with('attachment')->type('post')->orderBy('post_date', 'desc')->published();
