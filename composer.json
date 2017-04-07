@@ -1,0 +1,31 @@
+{
+    "name": "roliroli/wordpress-tools",
+    "description": "tools for wordpress",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roli",
+            "email": "kuroridoplayer@gmail.com"
+        }
+    ],
+    "require": {
+        "jgrossi/corcel": "^1.4",
+        "sunra/php-simple-html-dom-parser": "1.5.2",
+        "lullabot/amp": "^1.1",
+        "nesbot/carbon": "^1.22",
+        "thunderer/shortcode": "^0.6.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.1",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Roliroli\\WordpressTools\\": "src"
+        },
+        "files": [
+            "src/wordpress.php"
+        ]
+    }
+}
