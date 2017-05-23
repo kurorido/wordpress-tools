@@ -102,6 +102,10 @@ class PostTransformer extends Transformer
 
     private function transformAuthor($item)
     {
+        if (!isset($item['author'])) {
+            return $item;
+        }
+
         $item['author'] = TransformerFactory::buildAuthorTransformer()->transformSingle($item['author']);
 
         return $item;
