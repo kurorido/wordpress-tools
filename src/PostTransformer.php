@@ -35,18 +35,6 @@ class PostTransformer extends Transformer
         $this->options = $options;
     }
 
-    public function transform($items)
-    {
-        $transformed = [];
-
-        foreach($items as $item)
-        {
-            $transformed[] = $this->transformSingle($item);
-        }
-
-        return $transformed;
-    }
-
     public function transformSingle($item)
     {
         if(!is_array($item)) {

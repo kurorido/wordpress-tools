@@ -9,18 +9,6 @@ class CategoryTransformer extends Transformer
         'term'
     ];
 
-    public function transform($items)
-    {
-        $transformed = [];
-
-        for($i = 0; $i < count($items); $i++)
-        {
-            $transformed[] = $this->transformSingle($items[$i]);
-        }
-
-        return $transformed;
-    }
-
     public function transformSingle($item)
     {
         $item = $this->filter($item->toArray(), $this->columns);

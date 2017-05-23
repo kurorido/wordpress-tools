@@ -9,18 +9,6 @@ class AuthorTransformer extends Transformer
 {
     private $columns = ['ID', 'nickname', 'email', 'description', 'avatar'];
 
-    public function transform($items)
-    {
-        $transformed = [];
-
-        foreach($items as $item)
-        {
-            $transformed[] = $this->transformSingle($item);
-        }
-
-        return $transformed;
-    }
-
     public function transformSingle($item)
     {
         if(!is_array($item)) {

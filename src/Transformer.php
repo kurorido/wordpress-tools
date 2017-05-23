@@ -2,8 +2,40 @@
 
 namespace Roliroli\WordpressTools;
 
-class Transformer
+abstract class Transformer
 {
+    abstract public function transformSingle($item);
+
+    public function transform($items)
+    {
+        $transformed = [];
+
+        foreach($items as $item)
+        {
+            $transformed[] = $this->transformSingle($item);
+        }
+
+        return $transformed;
+    }
+
+
+    public function transformObjects($items)
+    {
+        $transformed = [];
+
+        foreach($items as $item)
+        {
+            $transformed[] = $this->transformSingleObject($item);
+        }
+
+        return $transformed;
+    }
+
+    public function transformSingleObject($item)
+    {
+        return json_decode(json_encode($this->transformSingle($item)));
+    }
+
     public function filter($item, $columns)
     {
         $_item = [];
