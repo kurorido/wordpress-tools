@@ -78,8 +78,8 @@ abstract class Transformer
 
         if($hasImage) {
 
-            if (function_exists('env')) {
-                $url_prefix = env('RESOURCE_URL', 'http://localhost/');
+            if (function_exists('config')) {
+                $url_prefix = config('wordpress_tool.RESOURCE_URL');
             } else {
                 $url_prefix = 'http://localhost/';
             }
@@ -94,8 +94,8 @@ abstract class Transformer
                 // pexels-photo-46710-large-300x200.jpeg
                 // result:
                 // https://s3.amazonaws.com/goedu-main-media/goeducation-tw/2016/07/28101623/
-                if (function_exists('env')) {
-                    $url_prefix = env('S3_RESOURCE_URL', 'https://s3.amazonaws.com/');
+                if (function_exists('config')) {
+                    $url_prefix = config('wordpress_tool.S3_RESOURCE_URL');
                 } else {
                     $url_prefix = 'http://localhost/';
                 }
