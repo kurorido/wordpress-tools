@@ -72,13 +72,25 @@ class PostTransformer extends Transformer
         // [caption id="attachment_19418" align="alignnone" width="300"]<img class="size-medium wp-image-19418" src="http://www.goeducation.com.tw/wp-content/uploads/2016/04/o-BUSINESS-MEETING-facebook-300x150.jpg" alt="Financial planning" width="300" height="150" /> Financial planning[/caption]
         // <figure id="attachment_19418" style="width: 300px" class="wp-caption alignnone"><img class="size-medium wp-image-19418" src="http://www.goeducation.com.tw/wp-content/uploads/2016/04/o-BUSINESS-MEETING-facebook-300x150.jpg" alt="Financial planning" width="300" height="150"><figcaption class="wp-caption-text">Financial planning</figcaption></figure>
 
-        $facade = new ShortcodeFacade();
-        $facade->addHandler('caption', function(ShortcodeInterface $s) {
+        $captionShortcode = new ShortcodeFacade();
+        $captionShortcode->addHandler('caption', function(ShortcodeInterface $s) {
             $dom = HtmlDomParser::str_get_html($s->getContent('name'));
             return sprintf('<pre><figure> %s <figcaption> %s </figcaption></figure></pre>', $dom->find('img')[0]->outertext, $dom->plaintext);
         });
 
-        $item['post_content'] = $facade->process($item['post_content']);
+        $item['post_content'] = $captionShortcode->process($item['post_content']);
+
+        // [embed]https://www.youtube.com/watch?v=UVHyS8UbiOE[/embed]
+        // <iframe src="https://www.youtube.com/embed/UVHyS8UbiOE?feature=oembed" frameborder="0" allowfullscreen="" id="fitvid503643"></iframe>
+        $embeddedShortcode = new ShortcodeFacade();
+        $embeddedShortcode->addHandler('embed', function (ShortcodeInterface $s) {
+            $dom = HtmlDomParser::str_get_html($s->getContent('name'));
+            $url = parse_url($dom->plaintext);
+            parse_str($url['query'], $params);
+            return sprintf('<div class="video-container"><iframe src="https://www.youtube.com/embed/%s?feature=oembed" frameborder="0" allowfullscreen=""></iframe></div>', $params['v']);
+        });
+
+        $item['post_content'] = $embeddedShortcode->process($item['post_content']);
         // end
 
         if(array_get($this->options, 'amp', false)) {
