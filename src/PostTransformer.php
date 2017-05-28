@@ -86,6 +86,7 @@ class PostTransformer extends Transformer
         $embeddedShortcode->addHandler('embed', function (ShortcodeInterface $s) {
             $dom = HtmlDomParser::str_get_html($s->getContent('name'));
             $url = parse_url($dom->plaintext);
+            if (!isset($url['query'])) return '';
             parse_str($url['query'], $params);
             return sprintf('<div class="video-container"><iframe src="https://www.youtube.com/embed/%s?feature=oembed" frameborder="0" allowfullscreen=""></iframe></div>', $params['v']);
         });
