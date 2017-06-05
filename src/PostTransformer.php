@@ -102,6 +102,8 @@ class PostTransformer extends Transformer
 
         if(array_get($this->options, 'amp', false)) {
             $item['post_content'] = AmpUtils::amp($item['post_content']);
+            // 直接砍掉沒辦法處理的 img tag
+            $item['post_content'] = preg_replace("/<img[^>]+\>/i", "(image) ", $item['post_content']);
         }
 
         return $item;

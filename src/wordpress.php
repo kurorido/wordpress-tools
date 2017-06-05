@@ -1,4 +1,60 @@
 <?php
+use Roliroli\WordpressTools\Models\Post;
+use Roliroli\WordpressTools\PostTransformer;
+use Roliroli\WordpressTools\CategoryTransformer;
+
+function wp_post($post, $configs = [])
+{
+    return app(PostTransformer::class)($configs)->transformSingleObject($post);
+}
+
+function wp_posts($posts, $configs = [])
+{
+    return app(PostTransformer::class)($configs)->transformObjects($posts);
+}
+
+function wp_posts_pagination($posts, $configs = [])
+{
+    return app(PostTransformer::class)($configs)->trasnformPagination($posts);
+}
+
+function wp_categories($categories)
+{
+    return app(CategoryTransformer::class)->transformObjects($categories);
+}
+
+function wp_related_posts_by_category($category_slug, $number = 4)
+{
+    return wp_posts(Post::category($category_slug)->take($number)->get()->toArray());
+}
+
+// 取得這篇文章內容會用到什麼 AMP Plugins
+function wp_amp_plugins($post)
+{
+    $plugins = [];
+
+    // 外掛 Plugin
+    if (strpos($post->post_content, '</amp-youtube>')) {
+        $plugins[] = '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>';
+    }
+
+    if (strpos($post->post_content, 'amp-iframe')) {
+        $plugins[] = '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>';
+    }
+
+    return $plugins;
+}
+
+// 取得文章敘述
+function wp_post_excerpt($post)
+{
+    // 如果有設定就回傳設定的
+    if (!empty($post->excerpt)) return $post->excerpt;
+    // 看看有沒有內容，沒內容則回傳空的值
+    if (empty($post->post_content)) return '';
+    // 如果有內容，就從內容取得
+    return str_replace("\n", '', str_limit(strip_tags($post->post_content), 100));
+}
 
 function wpautop( $pee, $br = true ) {
     $pre_tags = array();

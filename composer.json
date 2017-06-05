@@ -14,7 +14,8 @@
         "sunra/php-simple-html-dom-parser": "1.5.2",
         "lullabot/amp": "^1.1",
         "nesbot/carbon": "^1.22",
-        "thunderer/shortcode": "^0.6.5"
+        "thunderer/shortcode": "^0.6.5",
+        "illuminate/support": "^5.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.1",
