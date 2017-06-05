@@ -8,6 +8,10 @@ class Post extends Corcel
 {
     protected $connection = 'wordpress';
 
+    private $noContentFields = [
+        'ID', 'post_date', 'post_title', 'post_excerpt', 'post_type', 'post_date_gmt', 'post_modified_gmt'
+    ];
+
     public function scopePost($query)
     {
         return $query->with('author')->with('attachment')->type('post')->orderBy('post_date', 'desc')->published();
@@ -26,5 +30,10 @@ class Post extends Corcel
     public function scopeTag($query, $tag)
     {
         return $this->scopePost($query)->taxonomy('post_tag', $tag);
+    }
+
+    public function scopeNoPostContent($query)
+    {
+        return $query->select($this->noContentFields);
     }
 }

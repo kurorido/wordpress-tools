@@ -31,6 +31,16 @@ abstract class Transformer
         return $transformed;
     }
 
+    public function trasnformPagination($pagination)
+    {
+        $transformer = $this;
+        $pagination->transform(function ($item) use ($transformer) {
+            return $transformer->transformSingleObject($item);
+        });
+
+        return $pagination;
+    }
+
     public function transformSingleObject($item)
     {
         return json_decode(json_encode($this->transformSingle($item)));

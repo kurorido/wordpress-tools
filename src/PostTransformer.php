@@ -66,6 +66,12 @@ class PostTransformer extends Transformer
 
         // $item['post_content'] = str_replace($order, $replace, $item['post_content']);
 
+        // 沒有內容的情況下就直接回傳
+        if (!isset($item['post_content'])) {
+            $item['post_content'] = '';
+            return $item;
+        }
+
         $item['post_content'] = wpautop($item['post_content']);
 
         // shortcode [caption] => figure
