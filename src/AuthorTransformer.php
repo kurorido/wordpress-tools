@@ -7,7 +7,7 @@ use Roliroli\WordpressTools\Models\Options;
 
 class AuthorTransformer extends Transformer
 {
-    private $columns = ['ID', 'nickname', 'email', 'description', 'avatar'];
+    private $columns = ['ID', 'nickname', 'user_nicename', 'display_name', 'slug', 'email', 'description', 'avatar'];
 
     public function transformSingle($item)
     {
