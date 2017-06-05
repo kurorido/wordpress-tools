@@ -9,7 +9,7 @@ class Post extends Corcel
     protected $connection = 'wordpress';
 
     private $noContentFields = [
-        'ID', 'post_date', 'post_title', 'post_excerpt', 'post_type', 'post_date_gmt', 'post_modified_gmt'
+        'ID', 'post_name', 'post_date', 'post_title', 'post_excerpt', 'post_type', 'post_date_gmt', 'post_modified_gmt'
     ];
 
     public function scopePost($query)
