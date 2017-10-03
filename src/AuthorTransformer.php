@@ -41,7 +41,7 @@ class AuthorTransformer extends Transformer
         {
             // User Avatar Plugin
             // https://tw.wordpress.org/plugins/wp-user-avatar/
-            if($meta['meta_key'] == 'wp_user_avatar')
+            if($meta['meta_key'] == config('wordpress_tool.WORDPRESS_PREFIX', 'wp_') . 'user_avatar')
             {
                 $avatar_id = $meta['meta_value'];
                 $hasAvatar = true;
