@@ -2,7 +2,7 @@
 
 namespace Roliroli\WordpressTools\Models;
 
-use Corcel\TermTaxonomy as Corcel;
+use Corcel\Model\Taxonomy as Corcel;
 
 class Category extends Corcel
 {

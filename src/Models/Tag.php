@@ -2,7 +2,7 @@
 
 namespace Roliroli\WordpressTools\Models;
 
-use Corcel\TermTaxonomy as Corcel;
+use Corcel\Model\Post as Corcel;
 
 class Tag extends Corcel
 {

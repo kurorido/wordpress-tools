@@ -1,7 +1,18 @@
 <?php
+use Carbon\Carbon;
+use Roliroli\WordpressTools\CategoryTransformer;
 use Roliroli\WordpressTools\Models\Post;
 use Roliroli\WordpressTools\PostTransformer;
-use Roliroli\WordpressTools\CategoryTransformer;
+
+function carbon($string)
+{
+    return Carbon::parse($string);
+}
+
+function toDateTimeString($string)
+{
+    return Carbon::parse($string)->toDateTimeString();
+}
 
 function wp_post($post, $configs = [])
 {

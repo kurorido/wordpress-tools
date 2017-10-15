@@ -2,7 +2,7 @@
 
 namespace Roliroli\WordpressTools\Models;
 
-use Corcel\Post as Corcel;
+use Corcel\Model\Post as Corcel;
 
 class Post extends Corcel
 {
