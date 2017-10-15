@@ -2,7 +2,7 @@
 
 namespace Roliroli\WordpressTools\Models;
 
-use Corcel\Options as Corcel;
+use Corcel\Model\Option as Corcel;
 
 class Options extends Corcel
 {
